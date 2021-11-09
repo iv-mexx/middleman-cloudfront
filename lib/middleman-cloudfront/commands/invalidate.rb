@@ -127,7 +127,7 @@ end
           end.uniq
 
           # URI encode and add leading slash
-          files.map { |f| URI::encode(f.start_with?('/') ? f : "/#{f}") }
+          files.map { |f| URI.encode_www_form_component(f.start_with?('/') ? f : "/#{f}", enc=nil) }
         end
 
         # Add to CLI
