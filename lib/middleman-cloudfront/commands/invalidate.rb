@@ -1,6 +1,7 @@
 require 'middleman-cli'
 require 'middleman-cloudfront/extension'
 require 'fog/aws'
+require 'CGI'
 
 module Middleman
   module Cli
@@ -132,7 +133,7 @@ end
           end.uniq
 
           # URI encode and add leading slash
-          files.map { |f| URI::encode(f.start_with?('/') ? f : "/#{f}") }
+          files.map { |f| CGI.escape(f.start_with?('/') ? f : "/#{f}") }
         end
 
         # Add to CLI
